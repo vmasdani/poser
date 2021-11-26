@@ -1,5 +1,7 @@
 # PoSer
 
+<img src="/logo.png" width="300" />
+
 Full-fledged point of sales & inventory system solution which contains of:
 
 1. mobile app, tablet view (flutter 2)

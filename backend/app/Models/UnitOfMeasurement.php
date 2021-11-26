@@ -9,18 +9,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class User extends Model
+class UnitOfMeasurement extends Model
 {
-    
-    protected $table = 'users';
+    protected $table = 'item_groups';
     protected $fillable = [
         // base model
         'id', 'uuid', 'ordering', 'hidden', 'created_by_id',
         // base model ends
-        'name', 'username', 'password', 'kiosk_id', 'employee_id'
+        'name',
     ];
-    // $table->text('username')->nullable();
-    //         $table->text('password')->nullable();
-    //         $table->bigInteger('kiosk_id')->nullable();
-    //         $table->bigInteger('employee_id')->nullable();
 }

@@ -9,18 +9,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class User extends Model
+class Transaction extends Model
 {
-    
-    protected $table = 'users';
+    protected $table = 'transactions';
     protected $fillable = [
         // base model
         'id', 'uuid', 'ordering', 'hidden', 'created_by_id',
         // base model ends
-        'name', 'username', 'password', 'kiosk_id', 'employee_id'
+        'date', 'remark', 'is_custom_price', 'custom_price'
     ];
-    // $table->text('username')->nullable();
-    //         $table->text('password')->nullable();
-    //         $table->bigInteger('kiosk_id')->nullable();
-    //         $table->bigInteger('employee_id')->nullable();
+
+    // $table->dateTime('date')->nullable();
+    //         $table->text('remark')->nullable();
+    //         $table->boolean('is_custom_price')->nullable();
+    //         $table->double('custom_price')->nullable();
 }

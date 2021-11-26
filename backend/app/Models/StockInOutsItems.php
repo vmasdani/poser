@@ -9,18 +9,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class User extends Model
+class StockInOutsItems extends Model
 {
-    
-    protected $table = 'users';
+    protected $table = 'stock_in_outs_items';
     protected $fillable = [
         // base model
         'id', 'uuid', 'ordering', 'hidden', 'created_by_id',
         // base model ends
-        'name', 'username', 'password', 'kiosk_id', 'employee_id'
+        'qty', 'item_id', 'in_out_type', 'stock_in_out_id'
     ];
-    // $table->text('username')->nullable();
-    //         $table->text('password')->nullable();
-    //         $table->bigInteger('kiosk_id')->nullable();
-    //         $table->bigInteger('employee_id')->nullable();
+
+    // $table->double('qty')->nullable();
+    //         $table->bigInteger('item_id')->nullable();
+    //         $table->text('in_out_type')->nullable(); // I/O
+    //         $table->bigInteger('stock_in_out_id')->nullable();
 }

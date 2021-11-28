@@ -1,14 +1,25 @@
-<script>
-    const handleLogin = async (e, state) => {
+<script x-data="{ lumen: {{ $data }} }">
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('state', {
+            hello: 'world!',
+            password: '',
+            apiKey: localStorage.getItem ("apiKey") ?? null,
+            showSidebar: true
+        })
+    });
+
+    const handleLogin = async (e, state, store) => {
+
         try {
             e?.preventDefault()
+
             const resp = await fetch(`${state?.lumen?.baseUrl}/api/v1/admin-login`, {
                 method: 'post',
                 headers: {
                     'content-type': 'application/json',
                 },
                 body: JSON.stringify({
-                    password: state?.password ?? ''
+                    password: store?.state?.password ?? ''
                 })
             })
 
@@ -17,7 +28,7 @@
             alert('Login success!')
             const apiKey = await resp.text()
             localStorage.setItem('apiKey', apiKey)
-            state.apiKey = apiKey
+            store.state.apiKey = apiKey
         } catch (e) {
             alert(`${e}`)
         } finally {

@@ -1,4 +1,4 @@
-<div :class="`vh-100 overflow-auto d-none d-sm-block`" style="width: 15vw;resize:horizontal">
+<div :class="`vh-100 overflow-auto ${$store.state?.showSidebar ? 'd-block' : 'd-none' }`" style="width: 25vw;resize:horizontal">
     <div class="sticky-top text-white fw-bold bg-dark p-2">
         Admin
     </div>
@@ -40,7 +40,7 @@
 
 
 
-    <template x-for="i in [...Array(50)].map((_, i) => i + 1)">
+    <!-- <template x-for="i in [...Array(50)].map((_, i) => i + 1)">
         <div class="px-2" x-text="`sidebar item ${i}`"></div>
-    </template>
+    </template> -->
 </div>

@@ -18,4 +18,9 @@ class Item extends Model
         // base model ends
         'name', 'description', 'item_group_id', 'unit_of_measurement_id'
     ];
+
+    public function itemPrices()
+    {
+        return $this->hasMany(ItemPrice::class, 'item_id');
+    }
 }

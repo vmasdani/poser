@@ -7,14 +7,12 @@
         hello: 'world!',
         password: '',
         apiKey: null,
-        lumen: {{ $data }}
+        lumen: {{ $data }},
+        showSidebar: true
     }
 }" x-init="() => {
         state.apiKey = localStorage.getItem('apiKey') ?? null
     }">
-
-    <!-- <div x-text="state.apiKey"></div> -->
-
     <template x-if="state.apiKey">
         @include('dashboard')
     </template>
@@ -24,5 +22,4 @@
     </template>
 
     @include('scripts')
-
 </body>

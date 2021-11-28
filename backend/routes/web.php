@@ -45,7 +45,11 @@ $router->get('/items', function () use ($router) {
         'items',
         ['data' => json_encode(
             [
-                'baseUrl' => env('APPLICATION_BASE_URL')
+                'baseUrl' => env('APPLICATION_BASE_URL'),
+                'items' => Item::all()->map(function ($i) {
+                    $i->itemPrices;
+                    return $i;
+                })
             ]
         )]
     );
@@ -147,6 +151,13 @@ $router->group(['prefix' => '/api/v1'], function () use ($router) {
         $router->get('/items', function () use ($router) {
             return Item::all();
         });
+        $router->get('/items-view', function () use ($router) {
+            return Item::all()->map(function ($i) {
+                $i->itemPrices;
+                return $i;
+            });
+        });
+
         // ItemGroup
         $router->get('/itemgroups', function () use ($router) {
             return ItemGroup::all();
@@ -182,6 +193,40 @@ $router->group(['prefix' => '/api/v1'], function () use ($router) {
         // Users
         $router->get('/users', function () use ($router) {
             return User::all();
+        });
+
+        // Population
+        $router->get('/populate', function () use ($router) {
+            $items = [
+                [
+                    'name' => 'coffee ' . uniqid(),
+                    'description' => 'coffee robusta'
+                ]
+            ];
+
+            $itemsSaved = array_values(array_map(function ($i) {
+                $savedItem = Item::updateOrCreate(['id' => null], $i);
+
+                ItemPrice::updateOrCreate(
+                    ['id' => null],
+                    [
+                        'price' => 30000,
+                        'item_id' => $savedItem?->id
+                    ]
+                );
+
+                ItemPrice::updateOrCreate(
+                    ['id' => null],
+                    [
+                        'price' => 35000,
+                        'item_id' => $savedItem?->id
+                    ]
+                );
+
+                return $savedItem;
+            }, $items));
+
+            return $itemsSaved;
         });
     });
 });

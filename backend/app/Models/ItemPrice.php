@@ -26,4 +26,9 @@ class ItemPrice extends Model
     // $table->bigInteger('item_id')->nullable();
     // $table->double('price')->nullable();
     // $table->dateTime('date')->nullable();
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class, 'item_id');
+    }
 }

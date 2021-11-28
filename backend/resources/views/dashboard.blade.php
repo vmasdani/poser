@@ -3,8 +3,7 @@
         @include('sidebar')
     </div>
     <div class="flex-grow-1 vh-100 overflow-auto">
-        <div><button>Menu</button></div>
-
+        @include('topbar')       
         Logged in.
         <button @click="() => {
                 state.apiKey = null

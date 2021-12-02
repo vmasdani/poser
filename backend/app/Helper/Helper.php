@@ -6,6 +6,7 @@ use JsonMapper\Cache\NullCache;
 use JsonMapper\Handler\PropertyMapper;
 use JsonMapper\JsonMapperFactory;
 use JsonMapper\Middleware\Attributes\Attributes;
+use JsonMapper\Middleware\DocBlockAnnotations;
 use JsonMapper\Middleware\TypedProperties;
 
 class Helper
@@ -15,7 +16,8 @@ class Helper
         return (new JsonMapperFactory)->create(
             new PropertyMapper(),
             new Attributes(),
-            new TypedProperties(new NullCache)
+            new TypedProperties(new NullCache),
+            new DocBlockAnnotations(new NullCache)
         )->mapObjectFromString($str, $obj);
     }
 }
